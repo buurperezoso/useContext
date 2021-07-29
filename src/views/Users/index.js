@@ -7,7 +7,7 @@ import { UsersContext } from '../../components/useContextProvider';
 const Users = () => {
 
     const history = useHistory();
-    const users = useContext(UsersContext);
+    const [users] = useContext(UsersContext);
 
     return (
         <Container className="mt-4">
