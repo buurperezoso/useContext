@@ -8,7 +8,6 @@ const Users = () => {
 
     const history = useHistory();
     const [users] = useContext(UsersContext);
-
     return (
         <Container className="mt-4">
             {

@@ -12,11 +12,11 @@ const User = () => {
     const history = useHistory();
 
     useEffect(() => {
-        const foundUser = users.find((user) => user.id == id);
+        const foundUser = users.find((user) => user.id === id);
         if (foundUser) {
             setUser(foundUser)
         }
-    }, [users]);
+    }, [users, id]);
 
     const userStateHandler = (userID) => {
         dispatch({
