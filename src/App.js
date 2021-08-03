@@ -8,11 +8,11 @@ import {
 
 import User from './views/User';
 import Users from './views/Users';
-import { UseContextProvider } from './components/useContextProvider';
+import ReduxProvider from './components/ReduxProvider';
 
 function App() {
   return (
-    <UseContextProvider>
+    <ReduxProvider>
       <Router>
         <div>
           <nav>
@@ -35,7 +35,7 @@ function App() {
           </Switch>
         </div>
       </Router>
-    </UseContextProvider>
+    </ReduxProvider>
   );
 }
 

@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-
-import { UsersContext } from '../../components/useContextProvider';
+import allActions from '../../redux/actions';
 
 const User = () => {
 
     const [user, setUser] = useState({});
-    const [users, dispatch] = useContext(UsersContext);
+    const users = useSelector(state => state.usersReducer.users)
+    const dispatch = useDispatch();
     const { id } = useParams();
     const history = useHistory();
 
@@ -19,17 +20,11 @@ const User = () => {
     }, [users, id]);
 
     const userStateHandler = (userID) => {
-        dispatch({
-            type: "TOGGLE_USER",
-            userID
-        });
+        dispatch(allActions.usersActions.toggleUser(userID));
     };
 
     const userDeleteHandler = (userID) => {
-        dispatch({
-            type: "DELETE_USER",
-            userID
-        });
+        dispatch(allActions.usersActions.deleteUser(userID));
         history.push('/');
     };
 
@@ -46,8 +41,8 @@ const User = () => {
             </Row>
             <Row>
                 <Col>
-                    <button type="button" className={`btn ${user.active ? "btn-outline-primary" : "btn-outline-secondary"}`} onClick={() => userStateHandler(user.id)}>
-                        {user.active ? "Activate" : "Deactivate"}
+                    <button type="button" className={`btn ${user.active ? "btn-outline-secondary" : "btn-outline-primary"}`} onClick={() => userStateHandler(user.id)}>
+                        {user.active ? "Deactivate" : "Activate"}
                     </button>
                     <button type="button" className="btn btn-danger mx-3" onClick={() => userDeleteHandler(user.id)}>
                         Delete
